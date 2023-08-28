@@ -1,4 +1,4 @@
-package com.geeks.youtube_6.ui.main
+package com.geeks.youtube_6.ui.playlists
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,8 +12,8 @@ class PlaylistsAdapter : Adapter<PlaylistsAdapter.PlaylistViewHolder>() {
 
     private var _list = mutableListOf<PlaylistsModel.Item>()
 
-    fun setListModel(playlistsModel: PlaylistsModel) {
-        _list = playlistsModel.items.toMutableList()
+    fun setListModel(playlistsModelItem: List<PlaylistsModel.Item>?) {
+        _list = playlistsModelItem as MutableList<PlaylistsModel.Item>
         notifyDataSetChanged()
     }
 
