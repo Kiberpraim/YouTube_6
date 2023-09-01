@@ -3,36 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_marginVertical="8dp">
 
     <ImageView
         android:id="@+id/ivPlaylist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
         android:background="@drawable/img_default_playlist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:circularflow_defaultRadius="90dp"/>
 
     <TextView
+        android:id="@+id/tvInIVPlaylist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Playlist"
-        app:layout_constraintStart_toStartOf="@id/ivPlaylist"
-        app:layout_constraintEnd_toEndOf="@id/ivPlaylist"
-        app:layout_constraintBottom_toBottomOf="@id/ivPlaylist"
+        android:background="@color/black_transparent"
         android:gravity="center"
+        android:paddingVertical="4dp"
+        android:paddingStart="28dp"
+        android:text="playlist"
         android:textColor="@color/white"
-        android:background="@color/black_transparent"/>
-    
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivPlaylist"
+        app:layout_constraintEnd_toEndOf="@id/ivPlaylist"
+        app:layout_constraintStart_toStartOf="@id/ivPlaylist" />
+
     <TextView
         android:id="@+id/tvPlaylistName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
         android:text="Playlist name"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivPlaylist"
@@ -42,10 +47,10 @@
         android:id="@+id/tvNumberOfVideos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="0 video series"
-        app:layout_constraintStart_toEndOf="@id/ivPlaylist"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tvPlaylistName"
         app:layout_constraintTop_toBottomOf="@id/tvPlaylistName" />
 
 

@@ -1,14 +1,19 @@
 package com.geeks.youtube_6.ui.playlists
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.geeks.youtube_6.R
 import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ItemPlaylistsBinding
 
-class PlaylistsAdapter : Adapter<PlaylistsAdapter.PlaylistViewHolder>() {
+class PlaylistsAdapter(private val context: Context, private val onItemClick: (String) -> Unit) :
+    Adapter<PlaylistsAdapter.PlaylistViewHolder>() {
 
     private var _list = mutableListOf<PlaylistsModel.Item>()
 
@@ -17,12 +22,23 @@ class PlaylistsAdapter : Adapter<PlaylistsAdapter.PlaylistViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class PlaylistViewHolder(private val binding : ItemPlaylistsBinding) : ViewHolder(binding.root) {
+    inner class PlaylistViewHolder(private val binding: ItemPlaylistsBinding) :
+        ViewHolder(binding.root) {
         fun onBind(playlistsModelItem: PlaylistsModel.Item) {
-            with(binding){
+            with(binding) {
                 tvPlaylistName.text = playlistsModelItem.snippet.title // Название плейлиста
                 ivPlaylist.load(playlistsModelItem.snippet.thumbnails.default.url) // Ссылка на изображение по умолчанию
-                tvNumberOfVideos.text = "${playlistsModelItem.contentDetails.itemCount} video series" // Количество видео в плейлисте
+                if (playlistsModelItem.snippet.localized != null) {
+                    tvNumberOfVideos.text =
+                        "${playlistsModelItem.contentDetails.itemCount} video series" // Количество видео в плейлисте
+                }else{
+                    tvNumberOfVideos.text = "04:00"
+                    tvInIVPlaylist.text= ""
+                    tvInIVPlaylist.background = ContextCompat.getColor(context, R.color.white)
+                }
+            }
+            itemView.setOnClickListener {
+                onItemClick(playlistsModelItem.id)
             }
         }
     }

@@ -1,21 +1,19 @@
-package com.geeks.youtube_6.ui.playlists
+package com.geeks.youtube_6.ui.details
 
-import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.geeks.youtube_6.core.base.BaseActivity
 import com.geeks.youtube_6.core.network.Resource
-import com.geeks.youtube_6.databinding.ActivityPlaylistsBinding
-import com.geeks.youtube_6.ui.details.DetailsActivity
+import com.geeks.youtube_6.databinding.ActivityDetailsBinding
+import com.geeks.youtube_6.ui.playlists.PlaylistsAdapter
 import com.geeks.youtube_6.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewModel>() {
+class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>() {
+    override fun inflateViewBinding(): ActivityDetailsBinding =
+        ActivityDetailsBinding.inflate(layoutInflater)
 
-    override fun inflateViewBinding(): ActivityPlaylistsBinding =
-        ActivityPlaylistsBinding.inflate(layoutInflater)
-
-    override val viewModel: PlaylistsViewModel by viewModel()
+    override val viewModel: DetailsViewModel by viewModel()
 
     private val adapter = PlaylistsAdapter(this::onItemClick)
 
@@ -26,13 +24,13 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
 
     override fun initLiveData() {
         super.initLiveData()
-        viewModel.getPlayList().observe(this) { response ->
+        val playlistId: String = intent.getStringExtra(Constants.PLAYLIST_ID_KEY)!!
+        viewModel.getDetails(playlistId).observe(this) { response ->
             when (response.status) {
                 Resource.Status.SUCCESS -> {
                     Toast.makeText(this, "success status", Toast.LENGTH_SHORT).show()
                     adapter.setListModel(response.data?.items)
                     viewModel.loading.value = false
-                    binding.layoutNoInternet.root.visibility = View.GONE
                 }
 
                 Resource.Status.ERROR -> {
@@ -60,6 +58,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
         }
     }
 
+
     override fun checkInternetConnection() {
         super.checkInternetConnection()
         viewModel.isOnline(this).observe(this) {isOnline ->
@@ -68,11 +67,8 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
             }
         }
     }
-    private fun onItemClick(playlistId: String){
-        val intent = Intent(this, DetailsActivity::class.java)
 
-        intent.putExtra(Constants.PLAYLIST_ID_KEY, playlistId)
+    private fun onItemClick(playlistID: String) {
 
-        startActivity(intent)
     }
 }
