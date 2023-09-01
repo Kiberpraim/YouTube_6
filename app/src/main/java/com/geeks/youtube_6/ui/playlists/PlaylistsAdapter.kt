@@ -2,6 +2,8 @@ package com.geeks.youtube_6.ui.playlists
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -12,7 +14,7 @@ import com.geeks.youtube_6.R
 import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ItemPlaylistsBinding
 
-class PlaylistsAdapter(private val context: Context, private val onItemClick: (String) -> Unit) :
+class PlaylistsAdapter(private val onItemClick: (String) -> Unit) :
     Adapter<PlaylistsAdapter.PlaylistViewHolder>() {
 
     private var _list = mutableListOf<PlaylistsModel.Item>()
@@ -34,7 +36,10 @@ class PlaylistsAdapter(private val context: Context, private val onItemClick: (S
                 }else{
                     tvNumberOfVideos.text = "04:00"
                     tvInIVPlaylist.text= ""
-                    tvInIVPlaylist.background = ContextCompat.getColor(context, R.color.white)
+                    tvInIVPlaylist.background.colorFilter = PorterDuffColorFilter(
+                        Color.TRANSPARENT,
+                        PorterDuff.Mode.SRC_IN
+                    )
                 }
             }
             itemView.setOnClickListener {
