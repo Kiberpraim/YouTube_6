@@ -9,6 +9,7 @@ import com.geeks.youtube_6.core.network.Resource
 import com.geeks.youtube_6.databinding.ActivityPlaylistsBinding
 import com.geeks.youtube_6.ui.details.DetailsActivity
 import com.geeks.youtube_6.utils.Constants
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewModel>() {
@@ -18,7 +19,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
 
     override val viewModel: PlaylistsViewModel by viewModel()
 
-    private val adapter = PlaylistsAdapter(applicationContext,this::onItemClick)
+    private val adapter = PlaylistsAdapter(get(),this::onItemClick)
 
     override fun initView() {
         super.initView()

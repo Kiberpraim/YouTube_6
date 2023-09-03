@@ -8,6 +8,7 @@ import com.geeks.youtube_6.core.network.Resource
 import com.geeks.youtube_6.databinding.ActivityDetailsBinding
 import com.geeks.youtube_6.ui.playlists.PlaylistsAdapter
 import com.geeks.youtube_6.utils.Constants
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -17,7 +18,7 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
 
     override val viewModel: DetailsViewModel by viewModel()
 
-    private val adapter = PlaylistsAdapter(applicationContext,this::onItemClick)
+    private val adapter = PlaylistsAdapter(get(),this::onItemClick)
 
     override fun initView() {
         super.initView()
