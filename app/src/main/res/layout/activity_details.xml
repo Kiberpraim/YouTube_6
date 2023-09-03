@@ -19,7 +19,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/toolbar_hieght"
                 android:background="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways">
 
@@ -33,13 +33,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:paddingStart="0dp"
-                        android:text="Back"
+                        android:paddingStart="@dimen/_0dp"
+                        android:text="@string/btn_back"
                         android:textColor="@color/red"
                         android:textStyle="bold"
                         app:icon="@drawable/ic_back"
                         app:iconPadding="-2dp"
-                        app:iconSize="24dp"
+                        app:iconSize="@dimen/_24dp_icon_size"
                         app:iconTint="@color/red"
                         app:layout_constraintStart_toStartOf="@id/constraint"
                         app:layout_constraintTop_toTopOf="@id/constraint" />
@@ -49,9 +49,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Playlist"
+                        android:text="@string/playlist"
                         android:textColor="@color/red"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/toolbar_label"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@id/btnBack"
                         app:layout_constraintEnd_toEndOf="@id/constraint"
@@ -66,15 +66,15 @@
                 android:id="@+id/constraint_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp">
+                android:layout_marginTop="@dimen/_80dp">
 
                 <TextView
                     android:id="@+id/tvPlaylistName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:text="Playlist name"
-                    android:textSize="24sp"
+                    android:layout_marginHorizontal="@dimen/margin_main"
+                    android:text="@string/default_playlist_name"
+                    android:textSize="@dimen/playlist_name_text_size"
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="@id/constraint_second" />
 
@@ -82,9 +82,9 @@
                     android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:paddingTop="40dp"
-                    android:text="Description"
+                    android:layout_marginHorizontal="@dimen/margin_main"
+                    android:paddingTop="@dimen/_40dp"
+                    android:text="@string/description"
                     android:textSize="16sp"
                     app:layout_constraintTop_toBottomOf="@id/tvPlaylistName" />
 
@@ -92,9 +92,9 @@
                     android:id="@+id/tvNumberOfVideos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:paddingTop="40dp"
-                    android:text="0 video series"
+                    android:layout_marginHorizontal="@dimen/margin_main"
+                    android:paddingTop="@dimen/_40dp"
+                    android:text="@string/_number_video_series"
                     app:layout_anchor="@id/tvDescription"
                     app:layout_anchorGravity="bottom"
                     app:layout_constraintTop_toBottomOf="@id/tvDescription" />
@@ -118,7 +118,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/margin_main"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_playlists" />
 
@@ -147,9 +147,9 @@
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/margin_main"
         android:background="@drawable/background_fab"
-        android:elevation="10dp"
+        android:elevation="@dimen/_10dp"
         android:backgroundTint="@color/red"
         android:theme="@style/Theme.Material3.Dark"
         android:src="@drawable/ic_play"

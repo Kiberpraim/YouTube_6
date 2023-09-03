@@ -9,9 +9,9 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animate"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="12dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_12dp"
         app:layout_constraintBottom_toTopOf="@id/btnTryAgain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +23,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="No Internet Connection"
-        android:textSize="24sp"
+        android:layout_marginBottom="@dimen/_60dp"
+        android:text="@string/no_internet_connection"
+        android:textSize="@dimen/playlist_name_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btnTryAgain"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,11 +35,11 @@
         android:id="@+id/btnTryAgain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Try again"
-        android:layout_marginHorizontal="16dp"
-        android:textSize="24sp"
-        app:cornerRadius="4dp"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:text="@string/try_again"
+        android:layout_marginHorizontal="@dimen/margin_main"
+        android:textSize="@dimen/playlist_name_text_size"
+        app:cornerRadius="@dimen/_4dp_corner_Radius"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
