@@ -5,9 +5,12 @@ import android.widget.Toast
 import com.geeks.youtube_6.R
 import com.geeks.youtube_6.core.base.BaseActivity
 import com.geeks.youtube_6.core.network.Resource
+import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ActivityDetailsBinding
 import com.geeks.youtube_6.ui.playlists.PlaylistsAdapter
+import com.geeks.youtube_6.ui.video.VideoActivity
 import com.geeks.youtube_6.utils.Constants
+import com.geeks.youtube_6.utils.sendData
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,28 +21,33 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
 
     override val viewModel: DetailsViewModel by viewModel()
 
-    private val adapter = PlaylistsAdapter(get(),this::onItemClick)
+    private val model by lazy { intent.extras?.getSerializable(Constants.PLAYLIST_KEY) as PlaylistsModel.Item }
+
+    private val adapter = PlaylistsAdapter(get(), this::onItemClick)
 
     override fun initView() {
         super.initView()
         binding.recyclerView.adapter = adapter
 
         with(binding) {
-            tvPlaylistName.text = intent.getStringExtra(Constants.TITLE_KEY)!!
-            tvDescription.text = intent.getStringExtra(Constants.DESCRIPTION_KEY)!!
-            tvNumberOfVideos.text = intent.getStringExtra(Constants.NUMBER_OF_VIDEOS_KEY)!!
+            tvPlaylistName.text = model.snippet.title
+            tvDescription.text = model.snippet.description
+            tvNumberOfVideos.text =
+                model.contentDetails.itemCount.toString() + getString(R.string.video_series)
         }
     }
 
     override fun initLiveData() {
         super.initLiveData()
-        val playlistId: String = intent.getStringExtra(Constants.PLAYLIST_ID_KEY)!!
-        viewModel.getDetails(playlistId).observe(this) { response ->
+        // val playlistId: String = intent.getStringExtra(Constants.PLAYLIST_ID_KEY)!!
+        viewModel.getDetails(model.id).observe(this) { response ->
             when (response.status) {
                 Resource.Status.SUCCESS -> {
+
                     adapter.setListModel(response.data?.items)
                     viewModel.loading.value = false
                     binding.layoutNoInternet.root.visibility = View.GONE
+                    Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show()
                 }
 
                 Resource.Status.ERROR -> {
@@ -64,7 +72,6 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
         super.initListener()
         binding.btnBack.setOnClickListener {
             finish()
-
         }
         binding.layoutNoInternet.btnTryAgain.setOnClickListener {
             initLiveData()
@@ -81,7 +88,6 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
         }
     }
 
-    private fun onItemClick(playlistId: String, title: String, description: String, numberOfVideos: String) {
-
-    }
+    private fun onItemClick(playlistsModel: PlaylistsModel.Item) =
+        sendData(VideoActivity(), Constants.DETAIL_KEY, playlistsModel)
 }

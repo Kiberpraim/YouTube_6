@@ -5,7 +5,15 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface DetailsApiService {
+interface YouTubeApiService {
+
+    @GET("playlists")
+    suspend fun getPlaylists(
+        @Query("part") part: String,
+        @Query("key") key: String,
+        @Query("channelId") channelId: String,
+        @Query("maxResults") maxResults: Int,
+    ): Response<PlaylistsModel>
 
     @GET("playlistItems")
     suspend fun getDetails(

@@ -13,7 +13,10 @@ import com.geeks.youtube_6.R
 import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ItemPlaylistsBinding
 
-class PlaylistsAdapter(private val context: Context ,private val onItemClick: (String, String, String, String) -> Unit) :
+class PlaylistsAdapter(
+    private val context: Context,
+    private val onItemClick: (PlaylistsModel.Item) -> Unit,
+) :
     Adapter<PlaylistsAdapter.PlaylistViewHolder>() {
 
     private var _list = mutableListOf<PlaylistsModel.Item>()
@@ -30,7 +33,8 @@ class PlaylistsAdapter(private val context: Context ,private val onItemClick: (S
                 tvPlaylistName.text = playlistsModelItem.snippet.title // Название плейлиста
                 ivPlaylist.load(playlistsModelItem.snippet.thumbnails.default.url) // Ссылка на изображение по умолчанию
                 if (playlistsModelItem.snippet.localized != null) {
-                    tvNumberOfVideos.text = playlistsModelItem.contentDetails.itemCount.toString() + context.getString(R.string.video_series) // Количество видео в плейлисте
+                    tvNumberOfVideos.text =
+                        playlistsModelItem.contentDetails.itemCount.toString() + context.getString(R.string.video_series) // Количество видео в плейлисте
                 } else {
                     tvNumberOfVideos.text = context.getString(R.string._04_00)
                     tvInIVPlaylist.text = ""
@@ -42,12 +46,10 @@ class PlaylistsAdapter(private val context: Context ,private val onItemClick: (S
             }
             itemView.setOnClickListener {
                 onItemClick(
-                    playlistsModelItem.id,
-                    playlistsModelItem.snippet.title,
-                    playlistsModelItem.snippet.description,
-                    playlistsModelItem.contentDetails.itemCount.toString() + context.getString(R.string.video_series)
+                   playlistsModelItem
                 )
             }
+
         }
     }
 

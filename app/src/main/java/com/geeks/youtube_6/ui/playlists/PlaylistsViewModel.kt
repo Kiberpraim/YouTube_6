@@ -9,5 +9,4 @@ import com.geeks.youtube_6.data.repository.Repository
 class PlaylistsViewModel(private val repository: Repository) : BaseViewModel() {
 
     fun getPlayList(): LiveData<Resource<PlaylistsModel>> = repository.getPlaylist()
-
 }

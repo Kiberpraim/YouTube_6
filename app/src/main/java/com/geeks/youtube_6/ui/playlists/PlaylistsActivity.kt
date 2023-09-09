@@ -1,14 +1,15 @@
 package com.geeks.youtube_6.ui.playlists
 
-import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.geeks.youtube_6.R
 import com.geeks.youtube_6.core.base.BaseActivity
 import com.geeks.youtube_6.core.network.Resource
+import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ActivityPlaylistsBinding
 import com.geeks.youtube_6.ui.details.DetailsActivity
 import com.geeks.youtube_6.utils.Constants
+import com.geeks.youtube_6.utils.sendData
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +20,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
 
     override val viewModel: PlaylistsViewModel by viewModel()
 
-    private val adapter = PlaylistsAdapter(get(),this::onItemClick)
+    private val adapter = PlaylistsAdapter(get(), this::onItemClick)
 
     override fun initView() {
         super.initView()
@@ -70,19 +71,6 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
         }
     }
 
-    private fun onItemClick(
-        playlistId: String,
-        title: String,
-        description: String,
-        numberOfVideos: String
-    ) {
-        val intent = Intent(this, DetailsActivity::class.java)
-
-        intent.putExtra(Constants.PLAYLIST_ID_KEY, playlistId)
-        intent.putExtra(Constants.TITLE_KEY, title)
-        intent.putExtra(Constants.DESCRIPTION_KEY, description)
-        intent.putExtra(Constants.NUMBER_OF_VIDEOS_KEY, numberOfVideos)
-
-        startActivity(intent)
-    }
+    private fun onItemClick(playlistsModel: PlaylistsModel.Item) =
+        sendData(DetailsActivity(), Constants.PLAYLIST_KEY, playlistsModel)
 }

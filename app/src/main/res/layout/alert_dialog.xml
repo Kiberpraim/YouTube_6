@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_main">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select video quality"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize_20sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/red"
+        android:text="1080p"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize_16sp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/red"
+        android:text="720p"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize_16sp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/red"
+        android:text="480p"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize_16sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:text="Download"
+        android:textColor="@color/white" />
+
+</LinearLayout>

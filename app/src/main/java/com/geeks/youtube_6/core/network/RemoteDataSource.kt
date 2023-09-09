@@ -2,14 +2,13 @@ package com.geeks.youtube_6.core.network
 
 import com.geeks.youtube_6.BuildConfig
 import com.geeks.youtube_6.core.base.BaseDataSource
-import com.geeks.youtube_6.data.remote.DetailsApiService
-import com.geeks.youtube_6.data.remote.PlaylistsApiService
+import com.geeks.youtube_6.data.remote.YouTubeApiService
 import com.geeks.youtube_6.utils.Constants
 
-class RemoteDataSource(private val playlistsApiService: PlaylistsApiService,private val detailsApiService: DetailsApiService) : BaseDataSource() {
+class RemoteDataSource(private val youTubeApiService: YouTubeApiService) : BaseDataSource() {
 
     suspend fun getPlaylists() = getResult {
-        playlistsApiService.getPlaylists(
+        youTubeApiService.getPlaylists(
             key = BuildConfig.API_KEY,
             part = Constants.PART,
             channelId = Constants.CHANNEL_ID,
@@ -17,7 +16,7 @@ class RemoteDataSource(private val playlistsApiService: PlaylistsApiService,priv
         )
     }
     suspend fun getDetails(playlistId: String) = getResult {
-        detailsApiService.getDetails(
+        youTubeApiService.getDetails(
             key = BuildConfig.API_KEY,
             part = Constants.PART,
             playlistId = playlistId,

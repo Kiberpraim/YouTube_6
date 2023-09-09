@@ -1,8 +1,7 @@
 package com.geeks.youtube_6.core.network
 
 import com.geeks.youtube_6.BuildConfig
-import com.geeks.youtube_6.data.remote.DetailsApiService
-import com.geeks.youtube_6.data.remote.PlaylistsApiService
+import com.geeks.youtube_6.data.remote.YouTubeApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,7 +16,6 @@ val networkModule = module {
     factory { provideOkHttpClient(get()) }
     factory { provideRetrofit(get()) }
     single { providePlaylistsApiService(get()) }
-    single { provideDetailsApiService(get()) }
 }
 
 private fun provideInterceptor(): Interceptor = HttpLoggingInterceptor()
@@ -38,8 +36,5 @@ private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         .client(okHttpClient)
         .build()
 
-private fun providePlaylistsApiService(retrofit: Retrofit): PlaylistsApiService =
-    retrofit.create(PlaylistsApiService::class.java)
-
-private fun provideDetailsApiService(retrofit: Retrofit): DetailsApiService =
-    retrofit.create(DetailsApiService::class.java)
+private fun providePlaylistsApiService(retrofit: Retrofit): YouTubeApiService =
+    retrofit.create(YouTubeApiService::class.java)

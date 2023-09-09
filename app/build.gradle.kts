@@ -79,4 +79,8 @@ dependencies {
 
     // Lottie
     implementation("com.airbnb.android:lottie:6.1.0")
+
+    // YouTube player
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
 }

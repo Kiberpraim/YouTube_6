@@ -7,20 +7,17 @@
     <dimen name="_0dp">0dp</dimen>
     <dimen name="_4dp_text_padding_in_item_image">4dp</dimen>
     <dimen name="_28dp_text_padding_start_in_item_image">28dp</dimen>
-    <dimen name="_12sp_text_size_in_item_image">12sp</dimen>
     <dimen name="item_text_horizontal">12dp</dimen>
     <dimen name="item_text_margin_top">8dp</dimen>
-    <dimen name="textSize_16sp">16sp</dimen>
     <dimen name="item_description_margin_top">4dp</dimen>
-    <dimen name="toolbar_hieght">56dp</dimen>
-    <dimen name="_24dp_icon_size">24dp</dimen>
-    <dimen name="toolbar_label">20sp</dimen>
-    <dimen name="_80dp">80dp</dimen>
-    <dimen name="playlist_name_text_size">24sp</dimen>
-    <dimen name="_40dp">40dp</dimen>
     <dimen name="_10dp">10dp</dimen>
     <dimen name="_12dp">12dp</dimen>
     <dimen name="_60dp">60dp</dimen>
     <dimen name="_32dp">32dp</dimen>
     <dimen name="_4dp_corner_Radius">4dp</dimen>
+    <dimen name="_12sp_text_size_in_item_image">12sp</dimen>
+    <dimen name="textSize_16sp">16sp</dimen>
+    <dimen name="textSize_20sp">20sp</dimen>
+    <dimen name="playlist_name_text_size">24sp</dimen>
+    <dimen name="_8dp">8dp</dimen>
 </resources>
