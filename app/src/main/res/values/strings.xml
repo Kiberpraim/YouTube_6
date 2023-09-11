@@ -15,4 +15,8 @@
     <string name="_04_00">04:00</string>
     <string name="video">Video</string>
     <string name="download">Download</string>
+    <string name="select_video_quality">Select video quality</string>
+    <string name="_1080p">1080p</string>
+    <string name="_720p">720p</string>
+    <string name="_480p">480p</string>
 </resources>

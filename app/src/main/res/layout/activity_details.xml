@@ -72,10 +72,10 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvPlaylistName"
+                        android:id="@+id/tv_playlist_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_main"
+                        android:layout_marginVertical="@dimen/margin_main"
                         android:text="@string/default_playlist_name"
                         android:textColor="@color/black"
                         android:textSize="@dimen/playlist_name_text_size"
@@ -90,24 +90,25 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/textSize_16sp" />
 
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:id="@+id/btnPlay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/background_fab"
-                            android:elevation="@dimen/_10dp"
-                            android:layout_gravity="end"
-                            android:backgroundTint="@color/red"
-                            android:theme="@style/Theme.Material3.Dark"
-                            android:src="@drawable/ic_play"
-                            app:shapeAppearance="@drawable/background_fab" />
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btn_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="@dimen/_8dp"
+                        android:background="@drawable/background_fab"
+                        android:backgroundTint="@color/red"
+                        android:elevation="@dimen/_10dp"
+                        android:src="@drawable/ic_play"
+                        android:theme="@style/Theme.Material3.Dark"
+                        app:shapeAppearance="@drawable/background_fab" />
 
                 </LinearLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <TextView
-                android:id="@+id/tvNumberOfVideos"
+                android:id="@+id/tv_number_of_videos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_main"
@@ -130,9 +131,10 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_main"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_playlists" />
 
@@ -141,7 +143,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -151,7 +153,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <include
-        android:id="@+id/layoutNoInternet"
+        android:id="@+id/no_internet"
         layout="@layout/layout_no_internet_connection"
         android:visibility="gone" />
 

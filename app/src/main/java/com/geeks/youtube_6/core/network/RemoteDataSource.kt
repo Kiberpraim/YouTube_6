@@ -15,6 +15,7 @@ class RemoteDataSource(private val youTubeApiService: YouTubeApiService) : BaseD
             maxResults = 10,
         )
     }
+
     suspend fun getDetails(playlistId: String) = getResult {
         youTubeApiService.getDetails(
             key = BuildConfig.API_KEY,

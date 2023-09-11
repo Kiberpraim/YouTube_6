@@ -37,8 +37,8 @@ class PlaylistsAdapter(
                         playlistsModelItem.contentDetails.itemCount.toString() + context.getString(R.string.video_series) // Количество видео в плейлисте
                 } else {
                     tvNumberOfVideos.text = context.getString(R.string._04_00)
-                    tvInIVPlaylist.text = ""
-                    tvInIVPlaylist.background.colorFilter = PorterDuffColorFilter(
+                    tvInIvPlaylist.text = ""
+                    tvInIvPlaylist.background.colorFilter = PorterDuffColorFilter(
                         Color.TRANSPARENT,
                         PorterDuff.Mode.SRC_IN
                     )
@@ -46,10 +46,9 @@ class PlaylistsAdapter(
             }
             itemView.setOnClickListener {
                 onItemClick(
-                   playlistsModelItem
+                    playlistsModelItem
                 )
             }
-
         }
     }
 

@@ -34,7 +34,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
                 Resource.Status.SUCCESS -> {
                     adapter.setListModel(response.data?.items)
                     viewModel.loading.value = false
-                    binding.layoutNoInternet.root.visibility = View.GONE
+                    binding.noInternet.root.visibility = View.GONE
                 }
 
                 Resource.Status.ERROR -> {
@@ -57,7 +57,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
 
     override fun initListener() {
         super.initListener()
-        binding.layoutNoInternet.btnTryAgain.setOnClickListener {
+        binding.noInternet.btnTryAgain.setOnClickListener {
             initLiveData()
         }
     }
@@ -66,7 +66,7 @@ class PlaylistsActivity : BaseActivity<ActivityPlaylistsBinding, PlaylistsViewMo
         super.checkInternetConnection()
         viewModel.isOnline(this).observe(this) { isOnline ->
             if (!isOnline) {
-                binding.layoutNoInternet.root.visibility = View.VISIBLE
+                binding.noInternet.root.visibility = View.VISIBLE
             }
         }
     }

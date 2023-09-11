@@ -8,5 +8,6 @@ import com.geeks.youtube_6.data.repository.Repository
 
 class DetailsViewModel(private val repository: Repository) : BaseViewModel() {
 
-    fun getDetails(playlistId: String): LiveData<Resource<PlaylistsModel>> = repository.getDetails(playlistId)
+    fun getDetails(playlistId: String): LiveData<Resource<PlaylistsModel>> =
+        repository.getDetails(playlistId)
 }

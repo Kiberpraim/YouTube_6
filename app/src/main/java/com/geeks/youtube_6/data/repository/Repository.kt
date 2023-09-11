@@ -25,5 +25,4 @@ class Repository(private val remoteDataSource: RemoteDataSource) {
             emit(remoteDataSource.getDetails(playlistId))
         }
     }
-
 }

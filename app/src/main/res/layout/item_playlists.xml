@@ -6,7 +6,7 @@
     android:layout_marginVertical="@dimen/item_top">
 
     <ImageView
-        android:id="@+id/ivPlaylist"
+        android:id="@+id/iv_playlist"
         android:layout_width="@dimen/item_image_width"
         android:layout_height="@dimen/item_image_height"
         android:background="@drawable/img_default_playlist"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvInIVPlaylist"
+        android:id="@+id/tv_in_iv_playlist"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
         android:background="@color/black_transparent"
@@ -25,12 +25,12 @@
         android:text="@string/playlist_in_item_image"
         android:textColor="@color/white"
         android:textSize="@dimen/_12sp_text_size_in_item_image"
-        app:layout_constraintBottom_toBottomOf="@id/ivPlaylist"
-        app:layout_constraintEnd_toEndOf="@id/ivPlaylist"
-        app:layout_constraintStart_toStartOf="@id/ivPlaylist" />
+        app:layout_constraintBottom_toBottomOf="@id/iv_playlist"
+        app:layout_constraintEnd_toEndOf="@id/iv_playlist"
+        app:layout_constraintStart_toStartOf="@id/iv_playlist" />
 
     <TextView
-        android:id="@+id/tvPlaylistName"
+        android:id="@+id/tv_playlist_name"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/item_text_horizontal"
@@ -39,17 +39,17 @@
         android:textSize="@dimen/textSize_16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivPlaylist"
+        app:layout_constraintStart_toEndOf="@id/iv_playlist"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvNumberOfVideos"
+        android:id="@+id/tv_number_of_videos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_description_margin_top"
         android:text="@string/_number_video_series"
         android:textSize="@dimen/_12sp_text_size_in_item_image"
-        app:layout_constraintStart_toStartOf="@+id/tvPlaylistName"
-        app:layout_constraintTop_toBottomOf="@id/tvPlaylistName" />
+        app:layout_constraintStart_toStartOf="@+id/tv_playlist_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_playlist_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

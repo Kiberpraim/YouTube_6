@@ -1,5 +1,6 @@
 package com.geeks.youtube_6.ui.details
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.geeks.youtube_6.R
@@ -8,7 +9,7 @@ import com.geeks.youtube_6.core.network.Resource
 import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ActivityDetailsBinding
 import com.geeks.youtube_6.ui.playlists.PlaylistsAdapter
-import com.geeks.youtube_6.ui.video.VideoActivity
+import com.geeks.youtube_6.ui.player.PlayerActivity
 import com.geeks.youtube_6.utils.Constants
 import com.geeks.youtube_6.utils.sendData
 import org.koin.android.ext.android.get
@@ -34,19 +35,31 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
             tvDescription.text = model.snippet.description
             tvNumberOfVideos.text =
                 model.contentDetails.itemCount.toString() + getString(R.string.video_series)
+
+            btnPlay.setOnClickListener {
+                model.contentDetails
+            }
         }
     }
 
     override fun initLiveData() {
         super.initLiveData()
-        // val playlistId: String = intent.getStringExtra(Constants.PLAYLIST_ID_KEY)!!
         viewModel.getDetails(model.id).observe(this) { response ->
             when (response.status) {
                 Resource.Status.SUCCESS -> {
 
                     adapter.setListModel(response.data?.items)
+
+                    binding.btnPlay.setOnClickListener {
+                        sendData(
+                            PlayerActivity(),
+                            Constants.DETAIL_KEY,
+                            response.data?.items?.get(0)
+                        )
+                    }
+
                     viewModel.loading.value = false
-                    binding.layoutNoInternet.root.visibility = View.GONE
+                    binding.noInternet.root.visibility = View.GONE
                     Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show()
                 }
 
@@ -73,7 +86,7 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
         binding.btnBack.setOnClickListener {
             finish()
         }
-        binding.layoutNoInternet.btnTryAgain.setOnClickListener {
+        binding.noInternet.btnTryAgain.setOnClickListener {
             initLiveData()
         }
     }
@@ -83,11 +96,11 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
         super.checkInternetConnection()
         viewModel.isOnline(this).observe(this) { isOnline ->
             if (!isOnline) {
-                binding.layoutNoInternet.root.visibility = View.VISIBLE
+                binding.noInternet.root.visibility = View.VISIBLE
             }
         }
     }
 
     private fun onItemClick(playlistsModel: PlaylistsModel.Item) =
-        sendData(VideoActivity(), Constants.DETAIL_KEY, playlistsModel)
+        sendData(PlayerActivity(), Constants.DETAIL_KEY, playlistsModel)
 }

@@ -1,47 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/margin_main">
+    app:cardCornerRadius="@dimen/_4dp_corner_Radius">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select video quality"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textSize_20sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="@dimen/margin_main">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="@color/red"
-        android:text="1080p"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textSize_16sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_video_quality"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize_20sp"
+            android:textStyle="bold" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="@color/red"
-        android:text="720p"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textSize_16sp" />
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="@color/red"
-        android:text="480p"
-        android:textColor="@color/black"
-        android:textSize="@dimen/textSize_16sp" />
+            <RadioButton
+                android:id="@+id/rb_1080p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/red"
+                android:padding="@dimen/_8dp"
+                android:text="@string/_1080p"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_16sp"
+                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/red"
-        android:text="Download"
-        android:textColor="@color/white" />
+            <RadioButton
+                android:id="@+id/rb_720p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/red"
+                android:padding="@dimen/_8dp"
+                android:text="@string/_720p"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_16sp"
+                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
 
-</LinearLayout>
+            <RadioButton
+                android:id="@+id/rb_480p"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/red"
+                android:padding="@dimen/_8dp"
+                android:text="@string/_480p"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize_16sp"
+                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnDownload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="Download"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
