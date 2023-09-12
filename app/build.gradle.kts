@@ -83,4 +83,7 @@ dependencies {
     // YouTube player
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.28")
+
+    // Paging3
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 }

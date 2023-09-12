@@ -6,7 +6,8 @@ data class PlaylistsModel(
     val etag: String,
     val items: List<Item>,
     val kind: String,
-    val pageInfo: PageInfo
+    val pageInfo: PageInfo,
+    val nextPageToken: String,
 ) : Serializable {
     data class Item(
         val contentDetails: ContentDetails,

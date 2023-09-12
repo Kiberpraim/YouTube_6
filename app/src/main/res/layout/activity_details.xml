@@ -135,6 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_main"
+                    android:elevation="@dimen/_10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_playlists" />
 
@@ -154,7 +155,7 @@
 
     <include
         android:id="@+id/no_internet"
-        layout="@layout/layout_no_internet_connection"
+        layout="@layout/no_internet_connection"
         android:visibility="gone" />
 
 </LinearLayout>

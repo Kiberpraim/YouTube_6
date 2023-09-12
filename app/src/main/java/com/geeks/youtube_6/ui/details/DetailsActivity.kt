@@ -1,17 +1,17 @@
 package com.geeks.youtube_6.ui.details
 
-import android.content.Intent
 import android.view.View
-import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.geeks.youtube_6.R
 import com.geeks.youtube_6.core.base.BaseActivity
-import com.geeks.youtube_6.core.network.Resource
 import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ActivityDetailsBinding
-import com.geeks.youtube_6.ui.playlists.PlaylistsAdapter
+import com.geeks.youtube_6.ui.playlists.adapter.PlaylistsAdapter
 import com.geeks.youtube_6.ui.player.PlayerActivity
+import com.geeks.youtube_6.ui.playlists.paging_load_states.PlaylistsLoadStateAdapter
 import com.geeks.youtube_6.utils.Constants
 import com.geeks.youtube_6.utils.sendData
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,16 +35,15 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
             tvDescription.text = model.snippet.description
             tvNumberOfVideos.text =
                 model.contentDetails.itemCount.toString() + getString(R.string.video_series)
-
             btnPlay.setOnClickListener {
-                model.contentDetails
+                sendData(PlayerActivity(), Constants.DETAIL_KEY, model)
             }
         }
     }
 
     override fun initLiveData() {
         super.initLiveData()
-        viewModel.getDetails(model.id).observe(this) { response ->
+        /*viewModel.getDetails(model.id).observe(this) { response ->
             when (response.status) {
                 Resource.Status.SUCCESS -> {
 
@@ -73,6 +72,18 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
                     viewModel.loading.value = true
                 }
             }
+        }*/
+
+        lifecycleScope.launch {
+            viewModel.getDetails(model.id).observe(this@DetailsActivity) { pagingData ->
+                binding.recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
+                    footer = PlaylistsLoadStateAdapter {},
+                    header = PlaylistsLoadStateAdapter {},
+                )
+                adapter.submitData(
+                    lifecycle = lifecycle, pagingData = pagingData
+                )
+            }
         }
 
         viewModel.loading.observe(this) { status ->
@@ -87,20 +98,27 @@ class DetailsActivity : BaseActivity<ActivityDetailsBinding, DetailsViewModel>()
             finish()
         }
         binding.noInternet.btnTryAgain.setOnClickListener {
+            checkInternetConnection()
             initLiveData()
         }
     }
-
 
     override fun checkInternetConnection() {
         super.checkInternetConnection()
         viewModel.isOnline(this).observe(this) { isOnline ->
             if (!isOnline) {
                 binding.noInternet.root.visibility = View.VISIBLE
+            }else{
+                binding.noInternet.root.visibility = View.GONE
             }
         }
     }
 
     private fun onItemClick(playlistsModel: PlaylistsModel.Item) =
         sendData(PlayerActivity(), Constants.DETAIL_KEY, playlistsModel)
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 }

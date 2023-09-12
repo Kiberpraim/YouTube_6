@@ -5,4 +5,5 @@ object Constants {
     const val PART = "contentDetails, snippet"
     const val PLAYLIST_KEY = "playlist model key"
     const val DETAIL_KEY = "detail_key"
+    const val EMPTY_STRING = ""
 }

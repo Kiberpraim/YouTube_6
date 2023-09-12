@@ -131,6 +131,6 @@
 
     <include
         android:id="@+id/no_internet"
-        layout="@layout/layout_no_internet_connection" />
+        layout="@layout/no_internet_connection" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

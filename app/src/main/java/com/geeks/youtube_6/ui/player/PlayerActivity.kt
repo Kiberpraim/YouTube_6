@@ -7,7 +7,6 @@ import com.geeks.youtube_6.R
 import com.geeks.youtube_6.core.base.BaseActivity
 import com.geeks.youtube_6.data.model.PlaylistsModel
 import com.geeks.youtube_6.databinding.ActivityPlayerBinding
-import com.geeks.youtube_6.ui.playlists.PlaylistsViewModel
 import com.geeks.youtube_6.utils.Constants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -28,22 +27,28 @@ class PlayerActivity : BaseActivity<ActivityPlayerBinding, PlayerViewModel>() {
             videoView.addYouTubePlayerListener(
                 object : AbstractYouTubePlayerListener() {
                     override fun onReady(youTubePlayer: YouTubePlayer) {
-                        youTubePlayer.cueVideo(model.contentDetails.videoId, 0f)
+                        youTubePlayer.cueVideo(model.contentDetails.videoId ?: "BzVlosMz2mk", 0f)
                     }
                 }
             )
+
             btnBack.setOnClickListener {
                 finish()
             }
+
             btnDownload.setOnClickListener {
                 val builder = AlertDialog.Builder(this@PlayerActivity)
                 val dialogView = layoutInflater.inflate(R.layout.alert_dialog, null)
-                dialogView.findViewById<Button>(R.id.btnDownload).setOnClickListener {
-                    finish()
-                }
+                val btnDownload = dialogView.findViewById<Button>(R.id.btnDownload)
+
                 builder.setView(dialogView)
 
                 val alertDialog = builder.create()
+
+                btnDownload.setOnClickListener {
+                    alertDialog.cancel()
+                }
+
                 alertDialog.show()
             }
             tvTitle.text = model.snippet.title
@@ -59,6 +64,7 @@ class PlayerActivity : BaseActivity<ActivityPlayerBinding, PlayerViewModel>() {
     override fun initListener() {
         super.initListener()
         binding.noInternet.btnTryAgain.setOnClickListener {
+            checkInternetConnection()
             initView()
         }
     }
@@ -68,6 +74,8 @@ class PlayerActivity : BaseActivity<ActivityPlayerBinding, PlayerViewModel>() {
         viewModel.isOnline(this).observe(this) { isOnline ->
             if (!isOnline) {
                 binding.noInternet.root.visibility = View.VISIBLE
+            }else{
+                binding.noInternet.root.visibility = View.GONE
             }
         }
     }
