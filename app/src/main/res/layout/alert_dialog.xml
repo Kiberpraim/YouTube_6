@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/_4dp_corner_Radius">
+    app:cardCornerRadius="@dimen/_10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,8 @@
         android:padding="@dimen/margin_main">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/select_video_quality"
             android:textColor="@color/black"
@@ -21,7 +22,7 @@
 
         <RadioGroup
             android:id="@+id/radio_group"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -29,43 +30,44 @@
                 android:id="@+id/rb_1080p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/red"
                 android:padding="@dimen/_8dp"
                 android:text="@string/_1080p"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textSize_16sp"
-                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
+                style="@style/Widget.Material3.CompoundButton.RadioButton"
+                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert.Custom" />
 
             <RadioButton
                 android:id="@+id/rb_720p"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/red"
                 android:padding="@dimen/_8dp"
                 android:text="@string/_720p"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textSize_16sp"
-                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
+                style="@style/Widget.Material3.CompoundButton.RadioButton"
+                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert.Custom" />
 
             <RadioButton
                 android:id="@+id/rb_480p"
+                style="@style/Widget.Material3.CompoundButton.RadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/red"
                 android:padding="@dimen/_8dp"
                 android:text="@string/_480p"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textSize_16sp"
-                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
-
+                android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert.Custom" />
         </RadioGroup>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDownload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red"
-            android:text="Download"
-            android:textColor="@color/white" />
+            android:text="@string/download"
+            android:textColor="@color/white"
+            app:cornerRadius="@dimen/_4dp_corner_Radius" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

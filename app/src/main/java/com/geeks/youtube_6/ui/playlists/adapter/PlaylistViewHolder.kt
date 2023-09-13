@@ -21,7 +21,7 @@ class PlaylistViewHolder(
     ) {
         with(binding) {
             tvPlaylistName.text = playlistsModelItem.snippet.title // Название плейлиста
-            ivPlaylist.load(playlistsModelItem.snippet.thumbnails.default.url) // Ссылка на изображение по умолчанию
+            ivPlaylist.load(playlistsModelItem.snippet.thumbnails.medium.url?: "") // Ссылка на изображение по умолчанию
             if (playlistsModelItem.snippet.localized != null) {
                 tvNumberOfVideos.text =
                     playlistsModelItem.contentDetails.itemCount.toString() + context.getString(R.string.video_series) // Количество видео в плейлисте
